@@ -18,7 +18,7 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xdcd4e364d4043b49619c62ce09a8184","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"fbf0088091a34177b3904eb71d443518","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -427,7 +427,9 @@ demis
 #&gt; [1] "ko"  "si"  "fra" "kla"
 ```
 
---
+---
+
+## Exemplo 7: sonoridade 🔉
 
 - Também podemos calcular a média de dispersão de sonoridade em um vetor com `meanSonDisp()`:
 
@@ -439,7 +441,9 @@ syllables %&gt;%
 #&gt; [1] 2.67
 ```
 
-- **Nota**: A função usa 17 níveis de sonoridade (ver Parker 2011)
+- **Nota**: A função usa 17 níveis de sonoridade (ver Parker 2011)&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[[1] Parker, S. (2011). Sonority. In M. van Oostendorp, C. J. Ewen, E. Hume, &amp; K. Rice (Eds.), *The Blackwell companion to phonology* (pp. 1160–1184). Wiley Online Library. https://doi.org/10.1002/9781444335262.wbctp0049]
 
 ---
 
@@ -550,7 +554,7 @@ wug_pt(profile = "LHL")
 
 --
 
-- Vamos criar uma tabela com 8 palavras novas + probabilidade fonotática com `biGram_pt()`:
+- Vamos criar uma tabela com 8 palavras novas + probabilidade fonotática com &lt;mark&gt;`biGram_pt()`&lt;/mark&gt;:
 
 
 ```r
