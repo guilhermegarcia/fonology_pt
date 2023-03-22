@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Fonology</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Guilherme D. Garcia" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xdcd4e364d4043b49619c62ce09a8184","expires":14}</script>
+    <script src="libs/himalaya/himalaya.js"></script>
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <link href="libs/editable/editable.css" rel="stylesheet" />
+    <script src="libs/editable/editable.js"></script>
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="myStyles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+class: inverse, center, middle
+
+# Fonology
+## Um pacote R para análise fonológica
+### Guilherme D. Garcia
+
+&lt;img src="ULaval2.png" alt="Université Laval" style="width:7%"&gt;
+
+
+#### Université Laval • CRBLM
+
+---
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: darkred;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+
+## O que é 🤔
+
+&lt;img src="fonology.png" alt="Fonology" style="width:15%; float: right"&gt;
+- Um pacote em R com diversas funções (específicas e gerais)
+- Atualmente em desenvolvimento (v. 0.5.1); atualizações frequentes
+
+- **Hoje**: demo das principais funções com exemplos reais
+
+--
+
+## Motivação
+
+&gt; Automatizar codificação e processamento de dados fonológicos
+
+--
+
+## Conteúdo
+
+- Componente **analítico**: velocidade e precisão (escalabilidade)
+- Componente **didático**: interatividade e acessibilidade 
+
+---
+
+## Instalação etc. 🧐
+
+- Visite [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology) para informações e demos detalhadas
+- Para instalar o pacote, é necessário ter o pacote `devtools`:
+
+
+```r
+library(devtools) # install.packages("devtools")
+install_github("guilhermegarcia/fonology")
+```
+
+--
+
+## Feedback, bugs, dúvidas 🪲
+
+- Crie uma entrada em [github.com/guilhermegarcia/fonology/issues](https://github.com/guilhermegarcia/fonology/issues)
+
+--
+
+## Premissa para hoje
+
+- Familiaridade básica com R e com a família `tidyverse`
+
+---
+
+## De grafemas a fonemas 📜
+
+&gt; *Pouca coisa pode ser feita se não convertemos grafemas em fonemas*
+
+&lt;br&gt;
+- &lt;h-l&gt;Dados escritos&lt;/h-l&gt;: fáceis de encontrar, difíceis de analisar (e.g., grafemas ≠ fonemas; silabificação, acento)
+- Transcrição fonêmica: ponto de partida **essencial** 
+
+--
+
+## Hoje
+
+- Demo das principais funções:
+1. &lt;h-l&gt;Transcrição fonêmica&lt;/h-l&gt;
+--
+
+2. Extração de acento/sílaba, constituintes silábicos
+--
+
+3. Cálculo e visualização de sonoridade
+--
+
+4. Trapézio vocálico
+--
+
+5. Classes naturais
+--
+
+6. Gerador de palavras + probabilidade fonotática
+--
+
+7. Formantes + `ggplot2`
+
+
+---
+
+## Exemplo 1: transcrição ampla
+
+- `ipa_pt(...)`: transcrição de palavras do português
+
+
+```r
+library(Fonology)
+
+ipa_pt("concentração")
+#&gt; [1] "kon.sen.tɾa.ˈsãw̃"
+ipa_pt("tipos")
+#&gt; [1] "ˈti.pos"
+ipa_pt("quiséssemos")
+#&gt; [1] "ki.ˈzɛ.se.mos"
+ipa_pt("parangaricutirrimirruaro")
+#&gt; [1] "pa.ɾan.ga.ɾi.ku.ti.xi.mi.xu.ˈa.ɾo"
+```
+
+--
+
+- Função **não vetorizada** (i.e., serial): ideal para *um* input
+- &lt;h-l&gt;Diferencial&lt;/h-l&gt;: atribuição probabilística de acento, útil para palavras novas
+
+---
+
+## Exemplo 2: transcrição fina
+
+- `ipa_pt(..., narrow = T)`
+
+
+```r
+ipa_pt("concentração", narrow = T)
+#&gt; [1] "kõn.ˌsẽj̃ɲ.tɾa.ˈsãw̃"
+ipa_pt("tipos", narrow = T)
+#&gt; [1] "ˈt͡ʃi.pʊs"
+ipa_pt("quiséssemos", narrow = T)
+#&gt; [1] "ki.ˈzɛ.se.mʊs"
+ipa_pt("parangaricutirrimirruaro", narrow = T)
+#&gt; [1] "pa.ˌɾãŋ.ga.ˌɾi.ku.ˌt͡ʃi.xi.ˌmi.xu.ˈa.ɾʊ"
+```
+
+- Função **não vetorizada** (i.e., serial): ideal para *um* input
+- &lt;h-l&gt;Diferencial&lt;/h-l&gt;: acento é atribuído **probabilisticamente**, útil para palavras novas
+
+---
+
+## Exemplo 3: transcrição em massa
+
+- &lt;h-l&gt;Essencial&lt;/h-l&gt;: poder transcrever grandes quantidades de palavras
+- `ipa_pt_vec(...)`: transcrição vetorizada
+
+
+
+```r
+ipa_pt_vec(word = c("Exemplo", "com", "múltiplas", "palavras"))
+#&gt; [1] "e.ˈzem.plo"   "ˈkom"         "ˈmul.ti.plas" "pa.ˈla.vɾas"
+```
+
+--
+
+- Transcrição fina também disponível:
+
+
+```r
+ipa_pt_vec(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
+#&gt; [1] "ˌẽj̃ɲ.kõn.ˈtɾã.mʊs" "ˌtɾãns.kɾi.ˈsãw̃"   "fo.ˈnɛ.t͡ʃi.kɐ"    
+#&gt; [4] "ˈfĩ.nɐ"            "tãm.ˈbẽj̃ɲ"
+```
+
+- Função **vetorizada** (i.e., paralela): ideal para *muitos* dados
+- &lt;h-l&gt;Diferencial&lt;/h-l&gt;: velocidade (*mas* acento é atribuído **categoricamente**)
+
+
+---
+
+## Exemplo 4: texto curto 💬
+
+- `ipa_pt_vec()` exige um input tokenizado
+- E se nosso input for um texto...?
+- &lt;mark&gt;`cleanText()`&lt;/mark&gt;: limpeza e tokenização
+
+
+```r
+library(tidyverse) # Para usarmos %&gt;% + outras funções mais tarde
+texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
+
+texto %&gt;% 
+* cleanText() %&gt;%
+  ipa_pt_vec()
+#&gt;  [1] "ˈes.te"          "ˈɛ"              "ˈum"             "ˈtes.to"        
+#&gt;  [5] "bas.ˈtan.te"     "ˈkuɾ.to"         "ˈke"             "ˈnãw̃"           
+#&gt;  [9] "es.ˈta"          "to.ke.ni.ˈza.do"
+```
+
+---
+
+## Exemplo 5: texto curto em tabela 💬
+
+- Normalmente, análises começam com *data frames* ou *tibbles*
+
+
+```r
+texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
+
+tabela = tibble(palavra = texto %&gt;% cleanText()) %&gt;% # Coluna com palavras
+  mutate(ipa = palavra %&gt;% ipa_pt_vec()) # Coluna com transcrição
+```
+
+--
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; palavra &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; ipa &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; este &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈes.te &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; é &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈɛ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; um &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈum &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; texto &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈtes.to &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; bastante &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; bas.ˈtan.te &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; curto &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈkuɾ.to &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Exemplo 6: texto longo em tabela 📚
+
+- `getStress()`: extração de acento a partir de transcrição
+- `stopwords_pt`: lista de palavras funcionais
+- &lt;mark&gt;`syllable()`&lt;/mark&gt;: extração de constituintes silábicos
+
+
+```r
+lus1 = read_lines("lusiadas.txt") # Importamos o texto integral
+
+lus2 = lus1 %&gt;% 
+  cleanText() %&gt;% # Limpamos e tokenizamos o texto 
+  as_tibble() %&gt;% 
+  rename(word = value) %&gt;% 
+  filter(!word %in% stopwords_pt) %&gt;% # Removemos stopwords
+  mutate(ipa = ipa_pt_vec(word), # Criamos uma coluna para transcrição
+         stress = getStress(ipa), # outra para o acento
+         finSyl = getSyl(word = ipa, pos = 1), # outra para a sílaba final
+*        onsetFin = syllable(finSyl, const = "onset"),
+*        nucFin = syllable(finSyl, const = "nucleus"),
+*        codaFin = syllable(finSyl, const = "coda"),
+*        rimaFin = syllable(finSyl, const = "rhyme"))
+```
+
+--
+
+⏱️ total para executar o código acima: **&lt; 2s** (M1 Pro)
+
+---
+
+## Exemplo 6: texto longo em tabela 📚
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; word &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; ipa &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; stress &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; finSyl &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; onsetFin &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; nucFin &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; codaFin &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; rimaFin &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; armas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈaɾ.mas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; mas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; as &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; barões &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ba.ˈɾõj̃s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; final &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ɾõj̃s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ɾ &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; õj̃ &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; õj̃s &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; assinalados &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a.si.na.ˈla.dos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; dos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; o &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; os &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ocidental &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; o.si.den.ˈtal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; final &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; tal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; t &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; l &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; al &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; praia &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈpɾa.ja &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+- Total de 32618 palavras lexicais
+- Glides são onsets, codas, ou estão no núcleo...❓ 
+
+--
+
+&lt;div align = "center"&gt;
+&lt;img src="syllable.png" alt="syllable" style="width:80%;"&gt;
+&lt;/div&gt;
+
+---
+
+## Exemplo 7: sonoridade 🔉
+
+- `demi(word = ..., d = ...)`: extração de demissílabas (`d` = `1` ou `2`)
+
+
+```r
+syllables = c("kom", "sil", "fran", "klas")
+
+demis = syllables %&gt;% 
+  demi(d = 1) # extrair primeira demissílaba de cada sílaba
+
+demis
+#&gt; [1] "ko"  "si"  "fra" "kla"
+```
+
+--
+
+- Também podemos calcular a média de dispersão de sonoridade em um vetor com `meanSonDisp()`:
+
+
+```r
+syllables %&gt;% 
+  demi(d = 1) %&gt;% 
+  meanSonDisp()
+#&gt; [1] 2.67
+```
+
+- **Nota**: A função usa 17 níveis de sonoridade (ver Parker 2011)
+
+---
+
+## Exemplo 8: sonoridade 🔊
+
+- Para o ensino de fonologia: visualizar o princípio de sonoridade pode ser útil
+
+.pull-left[
+
+
+```r
+"combradol" %&gt;% 
+  ipa_pt() %&gt;% 
+* plotSon(syl = F)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+
+```r
+"pontilhonde" %&gt;% 
+  ipa_pt() %&gt;% 
+* plotSon(syl = T)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Exemplo 9: trapézio vocálico
+
+- `plotVowels()` gera trapézios para algumas línguas
+- A função também exporta opcionalmente o arquivo `tex` para quem utiliza `\(\LaTeX\)`
+
+.pull-left[
+
+
+```r
+plotVowels(lg = "Spanish", 
+*          tex = F)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+
+```r
+plotVowels(lg = "Italian", 
+*          tex = F)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+## Exemplo 10: classes naturais e traços distintivos 
+
+- De fonemas a traços usando `getFeat()`:
+
+
+```r
+getFeat(ph = c("i", "u"), lg = "English")
+#&gt; [1] "+hi"    "+tense"
+getFeat(ph = c("p", "b"), lg = "French")
+#&gt; [1] "-son"  "-cont" "+lab"
+getFeat(ph = c("i", "y", "u"), lg = "French")
+#&gt; [1] "+syl" "+hi"
+```
+
+--
+
+- De traços a fonemas usando `getPhon()`:
+
+
+```r
+getPhon(ft = c("+syl", "+hi"), lg = "French")
+#&gt; [1] "u" "i" "y"
+getPhon(ft = c("-DR", "-cont", "-son"), lg = "English")
+#&gt; [1] "t" "d" "b" "k" "g" "p"
+getPhon(ft = c("-son", "+vce"), lg = "Spanish")
+#&gt; [1] "z" "d" "b" "ʝ" "g" "v"
+```
+
+---
+
+## Exemplo 11: gerador de palavras e probabilidade fonotática 🎲
+
+- `wug_pt()` cria palavras
+
+
+```r
+set.seed(1)
+wug_pt(profile = "LHL")
+#&gt; [1] "dɾa.ˈbuɾ.me"
+```
+
+--
+
+- Vamos criar uma tabela com 8 palavras novas + probabilidade fonotática com `biGram_pt()`:
+
+
+```r
+set.seed(1)
+gerador = tibble(palavra = character(8)) %&gt;% # Criamos espaço para 8 palavras
+  mutate(palavra = wug_pt("LHL", n = 8), # Especificamos o perfil de peso
+         bigrama = palavra %&gt;% 
+*          biGram_pt()
+  ) 
+```
+
+---
+
+## Exemplo 11: gerador de palavras e probabilidade fonotática 🎲
+
+.pull-left[
+- Bigramas menores `\(\rightarrow\)` menos prováveis
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; palavra &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; bigrama &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; la.ˈxus.te &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -45.74615 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; xo.ˈman.xo &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -46.32619 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; be.ˈʒan.tɾe &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -49.19741 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; dɾa.ˈbuɾ.me &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -49.23458 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ze.ˈfɾan.ka &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -50.74279 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ʒa.ˈgɾan.fe &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -51.86230 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ʃe.ˈfoɾ.bɾe &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -55.46661 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; me.ˈxes.vɾo &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -68.84952 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+--
+
+.pull-right[
+- Bigramas calculados com base no [PSL](https://gdgarcia.ca/psl)
+- Acesse o léxico simplificado com `pt_lex`
+- Ou o léxico completo com `psl`
+
+
+```r
+set.seed(1)
+pt_lex %&gt;% sample_n(5)
+#&gt; # A tibble: 5 × 2
+#&gt;   word             pro                   
+#&gt;   &lt;fct&gt;            &lt;chr&gt;                 
+#&gt; 1 brocador         bɾo.ka.ˈdoɾ           
+#&gt; 2 flagelariáceo    fla.ʒe.la.ɾi.ˈa.sjo   
+#&gt; 3 ultratumular     ul.tɾa.tu.mu.ˈlaɾ     
+#&gt; 4 desencrencamento de.zen.kɾen.ka.ˈmen.to
+#&gt; 5 hulheira         u.ˈʎej.ɾa
+```
+]
+
+---
+
+## Exemplo 12: Listando bigramas 🎲
+
+.pull-left[
+
+```r
+lus_bigramas = lus1 %&gt;% 
+  cleanText() %&gt;% 
+  ipa_pt_vec() %&gt;% 
+* biGram_tbl()
+```
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; nGrams &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; n1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; n2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; freq &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; prop &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; e# &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; e &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12164 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0348509 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; a# &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11556 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0331089 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; o# &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; o &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0309945 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; s# &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10243 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0293470 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; #k &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; k &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6845 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0196115 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; #a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6126 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0175515 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; #d &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5361 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0153597 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; #e &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; e &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5140 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0147265 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+--
+
+.pull-right[
+- &lt;mark&gt;`biGram_tbl()`&lt;/mark&gt; `\(\rightarrow\)` todos os bigramas
+- Assim, podemos facilmente plotar padrões
+
+
+### Visualizando bigramas
+
+- Em conjunto com `biGram_tbl()`:
+- &lt;mark&gt;`plot_biGrams()`&lt;/mark&gt; `\(\rightarrow\)` gráficos com `ggplot2`
+
+
+- Duas opções de gráficos para a função:
+  1. `type = "heat"`
+  2. `type = "lollipop"`
+
+- Em ambas, definimos o número de bigramas `n`
+]
+
+---
+
+## Exemplo 12: Vizualisando bigramas 🎲
+
+.pull-left[
+
+```r
+lus_bigramas %&gt;% 
+* plot_biGrams(type = "lollipop", n = 10)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+```r
+lus_bigramas %&gt;% 
+* plot_biGrams(type = "heat", n = 50)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+
+
+## Exemplo 13: gráfico de vogais 🗣️
+
+- Um *wrapper* simples para F1/F2 em `ggplot2`. Exemplo com `vowels` (dados hipotéticos): 
+
+
+```r
+ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
+  geom_text() +
+  theme_classic() + theme(legend.position = "none")
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" height="300px" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Exemplo 13: gráfico de vogais 🗣️
+
+- Um *wrapper* simples para F1/F2 em `ggplot2`. Exemplo com `vowels` (dados hipotéticos):
+
+
+```r
+ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
+  geom_text() +
+  theme_classic() + theme(legend.position = "none") +
+* formants()
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" height="300px" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Nota sobre o *pipe*
+
+- Desde a versão **4.1**, o R possui um pipe nativo: `|&gt;` (cf. `%&gt;%` do pacote `magrittr`)
+- Em análises com &lt;h-l&gt;altíssima quantidade&lt;/h-l&gt; de dados, prefira `|&gt;`
+--
+
+- `Fonology`: internamente, apenas `|&gt;`; externamente, ambos os pipes podem ser usados
+  - É possível mudar o *default* (para usar o atalho `Ctrl+Shift+m` ou `Cmd+Shift+m`):
+
+&lt;br&gt;
+
+&lt;div align = "center"&gt;
+&lt;img src="pipe.png" alt="pipe" style="width:70%;"&gt;
+&lt;/div&gt;
+
+
+---
+
+class: inverse, center, middle
+
+# Fim
+
+
+```r
+ipa_pt("obrigado", narrow = T) %&gt;% str_c("!")
+#&gt; [1] "ˌo.bɾi.ˈga.dʊ!"
+```
+
+O projeto se beneficiou do programa ENVOL (Université Laval). Maiores informações em [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
+
+&lt;br&gt;
+
+&lt;img src="qr.png" alt="QR" style="width:30%"&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlight": "haddock",
+"ratio": "16:9",
+"center": true,
+"slideNumberFormat": "%current% de %total%",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
