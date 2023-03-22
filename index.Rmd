@@ -57,9 +57,9 @@ xaringanExtra::use_extra_styles(
 
 <img src="fonology.png" alt="Fonology" style="width:15%; float: right">
 - Um pacote em R com diversas funções (específicas e gerais)
-- Atualmente em desenvolvimento (v. 0.5.1); atualizações frequentes
+- Atualmente em desenvolvimento; atualizações frequentes
 
-- **Hoje**: demo das principais funções com exemplos reais
+- **Esta apresentação**: demo das principais funções com exemplos reais
 
 --
 
@@ -110,7 +110,7 @@ install_github("guilhermegarcia/fonology")
 
 --
 
-## Hoje
+## Nestes slides
 
 - Demo das principais funções:
 1. <h-l>Transcrição fonêmica</h-l>
@@ -560,7 +560,3 @@ ipa_pt("obrigado", narrow = T) %>% str_c("!")
 ```
 
 O projeto se beneficiou do programa ENVOL (Université Laval). Maiores informações em [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
-
-<br>
-
-<img src="qr.png" alt="QR" style="width:30%">
