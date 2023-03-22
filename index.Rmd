@@ -56,7 +56,7 @@ xaringanExtra::use_extra_styles(
 ## O que é 🤔
 
 <img src="fonology.png" alt="Fonology" style="width:15%; float: right">
-- Um pacote em R com diversas funções (específicas e gerais)
+- Um pacote em R que ajuda fonólogos na automação de certas tarefas
 - Atualmente em desenvolvimento; atualizações frequentes
 
 - **Esta apresentação**: demo das principais funções com exemplos reais
