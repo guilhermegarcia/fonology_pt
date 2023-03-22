@@ -94,7 +94,7 @@ install_github("guilhermegarcia/fonology")
 
 --
 
-## Premissa para hoje
+## Premissa
 
 - Familiaridade básica com R e com a família `tidyverse`
 
