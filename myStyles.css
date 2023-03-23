@@ -11,6 +11,6 @@ h-l {
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
 
-pre code {
+pre, code {
   font-family:"Fira Code", "Monaco", monospace !important;
 }
