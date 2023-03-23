@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
+
 mark {
   background-color: #ffff88;
   color: black;
@@ -6,4 +8,9 @@ mark {
 h-l {
   color: crimson;
   font-weight: bold;
+}
+
+
+pre, code {
+  font-family:"Fira Code", "Monaco", monospace;
 }
