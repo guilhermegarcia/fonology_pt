@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
-
 mark {
   background-color: #ffff88;
   color: black;
@@ -11,6 +9,8 @@ h-l {
 }
 
 
-pre, code {
-  font-family:"Fira Code", "Monaco", monospace;
+@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
+
+pre code {
+  font-family:"Fira Code", "Monaco", monospace !important;
 }
