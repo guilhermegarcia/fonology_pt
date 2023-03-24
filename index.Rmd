@@ -103,19 +103,28 @@ install_github("guilhermegarcia/fonology")
 
 ---
 
-## De grafemas a fonemas 📜
 
-> *Pouca coisa pode ser feita se não convertemos grafemas em fonemas*
+## Nota sobre o *pipe*
 
-<br>
-- <h-l>Dados escritos</h-l>: fáceis de encontrar, difíceis de analisar (e.g., grafemas ≠ fonemas; silabificação, acento)
-- Transcrição fonêmica: ponto de partida **essencial** 
-
+- Desde a versão **4.1**, o R possui um pipe nativo: `|>` (cf. `|>` do pacote `magrittr`)
+- Em análises com <h-l>altíssima quantidade</h-l> de dados, prefira `|>`
 --
 
-## Nestes slides
+- `Fonology`: internamente, apenas `|>`; externamente, ambos os pipes podem ser usados
+- É possível mudar o *default* (para usar o atalho `Ctrl+Shift+m` ou `Cmd+Shift+m`):
 
-- Demo das principais funções:
+<br>
+
+<div align = "center">
+<img src="pipe.png" alt="pipe" style="width:70%;">
+</div>
+
+---
+
+## Itinerário
+
+### Demo das principais funções:
+
 1. <h-l>Transcrição fonêmica</h-l>
 --
 
@@ -135,6 +144,29 @@ install_github("guilhermegarcia/fonology")
 --
 
 7. Formantes + `ggplot2`
+
+--
+
+***
+
+<br>
+
+> *Pouca coisa pode ser feita se não convertemos grafemas em fonemas*
+
+<br>
+- <h-l>Dados escritos</h-l>: fáceis de encontrar, difíceis de analisar (e.g., grafemas ≠ fonemas; silabificação, acento)
+- Transcrição fonêmica: ponto de partida **essencial** 
+
+
+---
+
+class: inverse, center, middle
+
+# Principais funções
+
+
+<img src="cat.gif" alt="pipe" style="width:30%;">
+
 
 
 ---
@@ -475,7 +507,7 @@ pt_lex |> sample_n(5)
 lus_bigramas = lus1 |> 
   cleanText() |> 
   ipa_pt_vec() |> 
-  biGram_tbl() #<<
+  biGramTbl() #<<
 ```
 
 ```{r, echo = F}
@@ -489,14 +521,14 @@ lus_bigramas |>
 --
 
 .pull-right[
-- <mark>`biGram_tbl()`</mark> $\rightarrow$ todos os bigramas
+- <mark>`biGramTbl()`</mark> $\rightarrow$ todos os bigramas
 - Assim, podemos facilmente plotar padrões
 
 
 ### Visualizando bigramas
 
-- Em conjunto com `biGram_tbl()`:
-- <mark>`plot_biGrams()`</mark> $\rightarrow$ gráficos com `ggplot2`
+- Em conjunto com `biGramTbl()`:
+- <mark>`plotBiGrams()`</mark> $\rightarrow$ gráficos com `ggplot2`
 
 
 - Duas opções de gráficos para a função:
@@ -513,7 +545,7 @@ lus_bigramas |>
 .pull-left[
 ```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800}
 lus_bigramas |> 
-  plot_biGrams(type = "lollipop", n = 10) #<<
+  plotBiGrams(type = "lollipop", n = 10) #<<
 ```
 ]
 
@@ -522,7 +554,7 @@ lus_bigramas |>
 .pull-right[
 ```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800}
 lus_bigramas |> 
-  plot_biGrams(type = "heat", n = 50) #<<
+  plotBiGrams(type = "heat", n = 50) #<<
 ```
 ]
 
@@ -555,30 +587,12 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-## Nota sobre o *pipe*
-
-- Desde a versão **4.1**, o R possui um pipe nativo: `|>` (cf. `|>` do pacote `magrittr`)
-- Em análises com <h-l>altíssima quantidade</h-l> de dados, prefira `|>`
---
-
-- `Fonology`: internamente, apenas `|>`; externamente, ambos os pipes podem ser usados
-- É possível mudar o *default* (para usar o atalho `Ctrl+Shift+m` ou `Cmd+Shift+m`):
-
-<br>
-
-<div align = "center">
-<img src="pipe.png" alt="pipe" style="width:70%;">
-</div>
-
-
----
-
-class: inverse, center, middle
-
 # Fim
 
-```{r}
-ipa_pt("obrigado", narrow = T) |> str_c("!")
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE}
+ipa_pt("obrigado") |> 
+  plotSon(syl = T)
 ```
 
-O projeto se beneficiou do programa ENVOL (Université Laval). Maiores informações em [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
+- O projeto se beneficiou do programa ENVOL (Université Laval). Mais informações: [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
+- Agradecimentos aos assistentes de pesquisa envolvidos no projeto (Linda Wong, Nicolas C. Bustos)

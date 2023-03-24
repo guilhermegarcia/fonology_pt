@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"fc0a395b2492486a973bf08377ed1cb4","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xb8234b02ad84d19953da54aff7225a5","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -119,19 +119,28 @@ install_github("guilhermegarcia/fonology")
 
 ---
 
-## De grafemas a fonemas 📜
 
-&gt; *Pouca coisa pode ser feita se não convertemos grafemas em fonemas*
+## Nota sobre o *pipe*
 
-&lt;br&gt;
-- &lt;h-l&gt;Dados escritos&lt;/h-l&gt;: fáceis de encontrar, difíceis de analisar (e.g., grafemas ≠ fonemas; silabificação, acento)
-- Transcrição fonêmica: ponto de partida **essencial** 
-
+- Desde a versão **4.1**, o R possui um pipe nativo: `|&gt;` (cf. `|&gt;` do pacote `magrittr`)
+- Em análises com &lt;h-l&gt;altíssima quantidade&lt;/h-l&gt; de dados, prefira `|&gt;`
 --
 
-## Nestes slides
+- `Fonology`: internamente, apenas `|&gt;`; externamente, ambos os pipes podem ser usados
+- É possível mudar o *default* (para usar o atalho `Ctrl+Shift+m` ou `Cmd+Shift+m`):
 
-- Demo das principais funções:
+&lt;br&gt;
+
+&lt;div align = "center"&gt;
+&lt;img src="pipe.png" alt="pipe" style="width:70%;"&gt;
+&lt;/div&gt;
+
+---
+
+## Itinerário
+
+### Demo das principais funções:
+
 1. &lt;h-l&gt;Transcrição fonêmica&lt;/h-l&gt;
 --
 
@@ -151,6 +160,29 @@ install_github("guilhermegarcia/fonology")
 --
 
 7. Formantes + `ggplot2`
+
+--
+
+***
+
+&lt;br&gt;
+
+&gt; *Pouca coisa pode ser feita se não convertemos grafemas em fonemas*
+
+&lt;br&gt;
+- &lt;h-l&gt;Dados escritos&lt;/h-l&gt;: fáceis de encontrar, difíceis de analisar (e.g., grafemas ≠ fonemas; silabificação, acento)
+- Transcrição fonêmica: ponto de partida **essencial** 
+
+
+---
+
+class: inverse, center, middle
+
+# Principais funções
+
+
+&lt;img src="cat.gif" alt="pipe" style="width:30%;"&gt;
+
 
 
 ---
@@ -670,7 +702,7 @@ pt_lex |&gt; sample_n(5)
 lus_bigramas = lus1 |&gt; 
   cleanText() |&gt; 
   ipa_pt_vec() |&gt; 
-* biGram_tbl()
+* biGramTbl()
 ```
 
 &lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
@@ -747,14 +779,14 @@ lus_bigramas = lus1 |&gt;
 --
 
 .pull-right[
-- &lt;mark&gt;`biGram_tbl()`&lt;/mark&gt; `\(\rightarrow\)` todos os bigramas
+- &lt;mark&gt;`biGramTbl()`&lt;/mark&gt; `\(\rightarrow\)` todos os bigramas
 - Assim, podemos facilmente plotar padrões
 
 
 ### Visualizando bigramas
 
-- Em conjunto com `biGram_tbl()`:
-- &lt;mark&gt;`plot_biGrams()`&lt;/mark&gt; `\(\rightarrow\)` gráficos com `ggplot2`
+- Em conjunto com `biGramTbl()`:
+- &lt;mark&gt;`plotBiGrams()`&lt;/mark&gt; `\(\rightarrow\)` gráficos com `ggplot2`
 
 
 - Duas opções de gráficos para a função:
@@ -772,7 +804,7 @@ lus_bigramas = lus1 |&gt;
 
 ```r
 lus_bigramas |&gt; 
-* plot_biGrams(type = "lollipop", n = 10)
+* plotBiGrams(type = "lollipop", n = 10)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
@@ -784,7 +816,7 @@ lus_bigramas |&gt;
 
 ```r
 lus_bigramas |&gt; 
-* plot_biGrams(type = "heat", n = 50)
+* plotBiGrams(type = "heat", n = 50)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
@@ -825,35 +857,18 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-## Nota sobre o *pipe*
-
-- Desde a versão **4.1**, o R possui um pipe nativo: `|&gt;` (cf. `|&gt;` do pacote `magrittr`)
-- Em análises com &lt;h-l&gt;altíssima quantidade&lt;/h-l&gt; de dados, prefira `|&gt;`
---
-
-- `Fonology`: internamente, apenas `|&gt;`; externamente, ambos os pipes podem ser usados
-- É possível mudar o *default* (para usar o atalho `Ctrl+Shift+m` ou `Cmd+Shift+m`):
-
-&lt;br&gt;
-
-&lt;div align = "center"&gt;
-&lt;img src="pipe.png" alt="pipe" style="width:70%;"&gt;
-&lt;/div&gt;
-
-
----
-
-class: inverse, center, middle
-
 # Fim
 
 
 ```r
-ipa_pt("obrigado", narrow = T) |&gt; str_c("!")
-#&gt; [1] "ˌo.bɾi.ˈga.dʊ!"
+ipa_pt("obrigado") |&gt; 
+  plotSon(syl = T)
 ```
 
-O projeto se beneficiou do programa ENVOL (Université Laval). Maiores informações em [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
+&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" height="300px" style="display: block; margin: auto;" /&gt;
+
+- O projeto se beneficiou do programa ENVOL (Université Laval). Mais informações: [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
+- Agradecimentos aos assistentes de pesquisa envolvidos no projeto (Linda Wong, Nicolas C. Bustos)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
