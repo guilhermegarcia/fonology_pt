@@ -244,6 +244,7 @@ tabela |>
 ## Exemplo 6: texto longo em tabela 📚
 
 - `getStress()`: extração de acento a partir de transcrição
+- `getSyl()`: extração de uma sílaba
 - `stopwords_pt`: lista de palavras funcionais
 - <mark>`syllable()`</mark>: extração de constituintes silábicos
 
@@ -264,10 +265,6 @@ lus2 = lus1 |>
          rimaFin = syllable(finSyl, const = "rhyme")) #<<
 ```
 
---
-
-⏱️ total para executar o código acima: **< 2s** (M1 Pro)
-
 ---
 
 ## Exemplo 6: texto longo em tabela 📚
@@ -281,7 +278,7 @@ lus2 |>
 
 --
 
-- Total de `r nrow(lus2)` palavras lexicais
+- Total de `r nrow(lus2)` palavras lexicais (⏱️ total para executar o código acima: **< 2s**)
 - Glides são onsets, codas, ou estão no núcleo...❓ 
 
 --

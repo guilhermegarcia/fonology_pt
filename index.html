@@ -22,7 +22,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"b347abb5031a4d2d829b80177908506a","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xae53ead88ec4cb8a6e7b9bc2a3274b9","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -307,6 +307,7 @@ tabela = tibble(palavra = texto |&gt; cleanText()) |&gt; # Coluna com palavras
 ## Exemplo 6: texto longo em tabela 📚
 
 - `getStress()`: extração de acento a partir de transcrição
+- `getSyl()`: extração de uma sílaba
 - `stopwords_pt`: lista de palavras funcionais
 - &lt;mark&gt;`syllable()`&lt;/mark&gt;: extração de constituintes silábicos
 
@@ -327,10 +328,6 @@ lus2 = lus1 |&gt;
 *        codaFin = syllable(finSyl, const = "coda"),
 *        rimaFin = syllable(finSyl, const = "rhyme"))
 ```
-
---
-
-⏱️ total para executar o código acima: **&lt; 2s** (M1 Pro)
 
 ---
 
@@ -405,7 +402,7 @@ lus2 = lus1 |&gt;
 
 --
 
-- Total de 32618 palavras lexicais
+- Total de 32618 palavras lexicais (⏱️ total para executar o código acima: **&lt; 2s**)
 - Glides são onsets, codas, ou estão no núcleo...❓ 
 
 --
