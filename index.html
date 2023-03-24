@@ -22,7 +22,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xae53ead88ec4cb8a6e7b9bc2a3274b9","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xe83032c7b63445c9a9fd8958937d270","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -306,10 +306,28 @@ tabela = tibble(palavra = texto |&gt; cleanText()) |&gt; # Coluna com palavras
 
 ## Exemplo 6: texto longo em tabela 📚
 
+&lt;img src="lus.jpeg" alt="Os Lusíadas" style="width:30%; float:right" border="5"&gt;
+
+### Tarefa
+
+1. Importar *Os Lusíadas*, limpar e tokenizar o texto
+2. Transcrever, silabificar, acentuar palavras lexicais
+3. Extrair acento e última sílaba
+4. Extrair constituintes da última sílaba de cada palavra
+
+--
+
+### Ferramentas/funções
+
 - `getStress()`: extração de acento a partir de transcrição
 - `getSyl()`: extração de uma sílaba
 - `stopwords_pt`: lista de palavras funcionais
 - &lt;mark&gt;`syllable()`&lt;/mark&gt;: extração de constituintes silábicos
+
+
+---
+
+## Exemplo 6: texto longo em tabela 📚
 
 
 ```r
@@ -319,7 +337,7 @@ lus2 = lus1 |&gt;
   cleanText() |&gt; # Limpamos e tokenizamos o texto 
   as_tibble() |&gt; 
   rename(word = value) |&gt; 
-  filter(!word %in% stopwords_pt) |&gt; # Removemos stopwords
+  filter(!word %in% stopwords_pt) |&gt; # Removemos palavras funcionais
   mutate(ipa = ipa_pt_vec(word), # Criamos uma coluna para transcrição
          stress = getStress(ipa), # outra para o acento
          finSyl = getSyl(word = ipa, pos = 1), # outra para a sílaba final
@@ -328,6 +346,11 @@ lus2 = lus1 |&gt;
 *        codaFin = syllable(finSyl, const = "coda"),
 *        rimaFin = syllable(finSyl, const = "rhyme"))
 ```
+
+--
+
+- Total de 32618 palavras lexicais 
+- ⏱️ total para executar o código abaixo: **&lt; 2s**
 
 ---
 
@@ -402,7 +425,7 @@ lus2 = lus1 |&gt;
 
 --
 
-- Total de 32618 palavras lexicais (⏱️ total para executar o código acima: **&lt; 2s**)
+
 - Glides são onsets, codas, ou estão no núcleo...❓ 
 
 --

@@ -243,10 +243,28 @@ tabela |>
 
 ## Exemplo 6: texto longo em tabela 📚
 
+<img src="lus.jpeg" alt="Os Lusíadas" style="width:30%; float:right" border="5">
+
+### Tarefa
+
+1. Importar *Os Lusíadas*, limpar e tokenizar o texto
+2. Transcrever, silabificar, acentuar palavras lexicais
+3. Extrair acento e última sílaba
+4. Extrair constituintes da última sílaba de cada palavra
+
+--
+
+### Ferramentas/funções
+
 - `getStress()`: extração de acento a partir de transcrição
 - `getSyl()`: extração de uma sílaba
 - `stopwords_pt`: lista de palavras funcionais
 - <mark>`syllable()`</mark>: extração de constituintes silábicos
+
+
+---
+
+## Exemplo 6: texto longo em tabela 📚
 
 ```{r, echo = T}
 lus1 = read_lines("lusiadas.txt") # Importamos o texto integral
@@ -255,7 +273,7 @@ lus2 = lus1 |>
   cleanText() |> # Limpamos e tokenizamos o texto 
   as_tibble() |> 
   rename(word = value) |> 
-  filter(!word %in% stopwords_pt) |> # Removemos stopwords
+  filter(!word %in% stopwords_pt) |> # Removemos palavras funcionais
   mutate(ipa = ipa_pt_vec(word), # Criamos uma coluna para transcrição
          stress = getStress(ipa), # outra para o acento
          finSyl = getSyl(word = ipa, pos = 1), # outra para a sílaba final
@@ -264,6 +282,11 @@ lus2 = lus1 |>
          codaFin = syllable(finSyl, const = "coda"), #<<
          rimaFin = syllable(finSyl, const = "rhyme")) #<<
 ```
+
+--
+
+- Total de `r nrow(lus2)` palavras lexicais 
+- ⏱️ total para executar o código abaixo: **< 2s**
 
 ---
 
@@ -278,7 +301,7 @@ lus2 |>
 
 --
 
-- Total de `r nrow(lus2)` palavras lexicais (⏱️ total para executar o código acima: **< 2s**)
+
 - Glides são onsets, codas, ou estão no núcleo...❓ 
 
 --
