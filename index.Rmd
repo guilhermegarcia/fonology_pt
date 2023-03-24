@@ -372,7 +372,7 @@ syllables |>
 ## Exemplo 9: trapézio vocálico
 
 - `plotVowels()` gera trapézios para algumas línguas
-- A função também exporta opcionalmente o arquivo `tex` para quem utiliza $\LaTeX$
+- A função também exporta opcionalmente o arquivo <mark>`tex`</mark> para quem utiliza $\LaTeX$
 
 .pull-left[
 
