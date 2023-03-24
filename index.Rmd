@@ -206,7 +206,7 @@ ipa_pt_vec(word = c("Encontramos", "transcrição", "fonética", "fina", "també
 - <mark>`cleanText()`</mark>: limpeza e tokenização
 
 ```{r, echo = TRUE, message = F, tidy=FALSE}
-library(tidyverse) # Para usarmos |> + outras funções mais tarde
+library(tidyverse)
 texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
 texto |> 
