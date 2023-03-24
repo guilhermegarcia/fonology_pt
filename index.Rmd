@@ -432,9 +432,8 @@ wug_pt(profile = "LHL")
 
 ```{r, message = F}
 set.seed(1)
-gerador = tibble(palavra = character(8)) |> # Criamos espaço para 8 palavras
-  mutate(palavra = wug_pt("LHL", n = 8), # Especificamos o perfil de peso
-         bigrama = palavra |> 
+gerador = tibble(palavra = wug_pt("LHL", n = 8)) |> # Criamos 8 palavras
+  mutate(bigrama = palavra |> # adicionamos uma coluna para log(P(bigrama))
            biGram_pt() #<<
   ) 
 ```
@@ -501,8 +500,8 @@ lus_bigramas |>
 
 
 - Duas opções de gráficos para a função:
-  1. `type = "heat"`
-  2. `type = "lollipop"`
+1. `type = "heat"`
+2. `type = "lollipop"`
 
 - Em ambas, definimos o número de bigramas `n`
 ]
@@ -563,7 +562,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 --
 
 - `Fonology`: internamente, apenas `|>`; externamente, ambos os pipes podem ser usados
-  - É possível mudar o *default* (para usar o atalho `Ctrl+Shift+m` ou `Cmd+Shift+m`):
+- É possível mudar o *default* (para usar o atalho `Ctrl+Shift+m` ou `Cmd+Shift+m`):
 
 <br>
 
