@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xca1d92fdc9d4556a2d0954e3d302f64","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xb3910313d2647dea233be73099c5146","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -703,7 +703,7 @@ pt_lex |&gt; sample_n(5)
 lus_bigramas = lus1 |&gt; 
   cleanText() |&gt; 
   ipa() |&gt; 
-* biGramTbl()
+* nGramTbl(n = 2)
 ```
 
 &lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
@@ -749,8 +749,8 @@ lus_bigramas = lus1 |&gt;
    &lt;td style="text-align:left;"&gt; #k &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; k &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6845 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0196115 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6849 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0196230 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; #a &lt;/td&gt;
@@ -780,21 +780,21 @@ lus_bigramas = lus1 |&gt;
 --
 
 .pull-right[
-- &lt;mark&gt;`biGramTbl()`&lt;/mark&gt; `\(\rightarrow\)` todos os bigramas
+- &lt;mark&gt;`nGramTbl()`&lt;/mark&gt; `\(\rightarrow\)` todos os bigramas
 - Assim, podemos facilmente plotar padrões
 
 
 ### Visualizando bigramas
 
-- Em conjunto com `biGramTbl()`:
-- &lt;mark&gt;`plotBiGrams()`&lt;/mark&gt; `\(\rightarrow\)` gráficos com `ggplot2`
+- Em conjunto com `nGramTbl()`:
+- &lt;mark&gt;`plotnGrams()`&lt;/mark&gt; `\(\rightarrow\)` gráficos com `ggplot2`
 
 
 - Duas opções de gráficos para a função:
-1. `type = "heat"`
-2. `type = "lollipop"`
+1. `type = "heat"` (somente para bigramas)
+2. `type = "lollipop"` (uni-, bi-, trigramas)
 
-- Em ambas, definimos o número de bigramas `n`
+- Em ambas, definimos o número de ngramas `n` desejado
 ]
 
 ---
@@ -805,7 +805,7 @@ lus_bigramas = lus1 |&gt;
 
 ```r
 lus_bigramas |&gt; 
-* plotBiGrams(type = "lollipop", n = 10)
+* plotnGrams(type = "lollipop", n = 10)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
@@ -817,7 +817,7 @@ lus_bigramas |&gt;
 
 ```r
 lus_bigramas |&gt; 
-* plotBiGrams(type = "heat", n = 50)
+* plotnGrams(type = "heat", n = 50)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;

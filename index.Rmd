@@ -508,7 +508,7 @@ pt_lex |> sample_n(5)
 lus_bigramas = lus1 |> 
   cleanText() |> 
   ipa() |> 
-  biGramTbl() #<<
+  nGramTbl(n = 2) #<<
 ```
 
 ```{r, echo = F}
@@ -522,21 +522,21 @@ lus_bigramas |>
 --
 
 .pull-right[
-- <mark>`biGramTbl()`</mark> $\rightarrow$ todos os bigramas
+- <mark>`nGramTbl()`</mark> $\rightarrow$ todos os bigramas
 - Assim, podemos facilmente plotar padrões
 
 
 ### Visualizando bigramas
 
-- Em conjunto com `biGramTbl()`:
-- <mark>`plotBiGrams()`</mark> $\rightarrow$ gráficos com `ggplot2`
+- Em conjunto com `nGramTbl()`:
+- <mark>`plotnGrams()`</mark> $\rightarrow$ gráficos com `ggplot2`
 
 
 - Duas opções de gráficos para a função:
-1. `type = "heat"`
-2. `type = "lollipop"`
+1. `type = "heat"` (somente para bigramas)
+2. `type = "lollipop"` (uni-, bi-, trigramas)
 
-- Em ambas, definimos o número de bigramas `n`
+- Em ambas, definimos o número de ngramas `n` desejado
 ]
 
 ---
@@ -546,7 +546,7 @@ lus_bigramas |>
 .pull-left[
 ```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800}
 lus_bigramas |> 
-  plotBiGrams(type = "lollipop", n = 10) #<<
+  plotnGrams(type = "lollipop", n = 10) #<<
 ```
 ]
 
@@ -555,7 +555,7 @@ lus_bigramas |>
 .pull-right[
 ```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800}
 lus_bigramas |> 
-  plotBiGrams(type = "heat", n = 50) #<<
+  plotnGrams(type = "heat", n = 50) #<<
 ```
 ]
 
