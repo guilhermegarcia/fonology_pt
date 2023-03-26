@@ -173,7 +173,7 @@ class: inverse, center, middle
 
 ## Exemplo 1: transcrição ampla
 
-- `ipa_pt(...)`: transcrição de palavras do português
+- `ipa_pt(...)`: transcrição de palavras
 
 ```{r, echo = TRUE}
 library(Fonology)
@@ -210,19 +210,19 @@ ipa_pt("parangaricutirrimirruaro", narrow = T)
 ## Exemplo 3: transcrição em massa
 
 - <h-l>Essencial</h-l>: poder transcrever grandes quantidades de palavras
-- `ipa_pt_vec(...)`: transcrição vetorizada
+- `ipa(...)`: transcrição vetorizada (<h-l>português e espanhol</h-l>)
 
 
 ```{r, echo = TRUE}
-ipa_pt_vec(word = c("Exemplo", "com", "múltiplas", "palavras"))
+ipa(word = c("Exemplo", "com", "múltiplas", "palavras"))
 ```
 
 --
 
-- Transcrição fina também disponível:
+- Transcrição fina também disponível (para o português):
 
 ```{r, echo = TRUE}
-ipa_pt_vec(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
+ipa(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
 ```
 
 - Função **vetorizada** (i.e., paralela): ideal para *muitos* dados
@@ -233,7 +233,7 @@ ipa_pt_vec(word = c("Encontramos", "transcrição", "fonética", "fina", "també
 
 ## Exemplo 4: texto curto 💬
 
-- `ipa_pt_vec()` exige um input tokenizado
+- `ipa()` exige um input tokenizado
 - E se nosso input for um texto...?
 - <mark>`cleanText()`</mark>: limpeza e tokenização
 
@@ -243,7 +243,7 @@ texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
 texto |> 
   cleanText() |> #<<
-  ipa_pt_vec()
+  ipa()
 
 ```
 
@@ -257,7 +257,7 @@ texto |>
 texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
 tabela = tibble(palavra = texto |> cleanText()) |> # Coluna com palavras
-  mutate(ipa = palavra |> ipa_pt_vec()) # Coluna com transcrição
+  mutate(ipa = palavra |> ipa()) # Coluna com transcrição
 
 ```
 
@@ -289,8 +289,9 @@ tabela |>
 ### Ferramentas/funções
 
 - `getStress()`: extração de acento a partir de transcrição
+- `getWeight()`: extração de perfil de peso (e.g., `LLH`)
 - `getSyl()`: extração de uma sílaba
-- `stopwords_pt`: lista de palavras funcionais
+- `stopwords_pt` e `stopwords_sp`: listas de palavras funcionais
 - <mark>`syllable()`</mark>: extração de constituintes silábicos
 
 
@@ -306,7 +307,7 @@ lus2 = lus1 |>
   as_tibble() |> 
   rename(word = value) |> 
   filter(!word %in% stopwords_pt) |> # Removemos palavras funcionais
-  mutate(ipa = ipa_pt_vec(word), # Criamos uma coluna para transcrição
+  mutate(ipa = ipa(word), # Criamos uma coluna para transcrição
          stress = getStress(ipa), # outra para o acento
          finSyl = getSyl(word = ipa, pos = 1), # outra para a sílaba final
          onsetFin = syllable(finSyl, const = "onset"), #<<
@@ -383,7 +384,7 @@ syllables |>
 
 ```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
 "combradol" |> 
-  ipa_pt() |> 
+  ipa() |> 
   plotSon(syl = F) #<<
 ```
 ]
@@ -393,8 +394,8 @@ syllables |>
 .pull-right[
 
 ```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
-"pontilhonde" |> 
-  ipa_pt() |> 
+"sobremesa" |> 
+  ipa(lg = "Spanish") |> 
   plotSon(syl = T) #<<
 ```
 ]
@@ -506,7 +507,7 @@ pt_lex |> sample_n(5)
 ```{r, echo = T}
 lus_bigramas = lus1 |> 
   cleanText() |> 
-  ipa_pt_vec() |> 
+  ipa() |> 
   biGramTbl() #<<
 ```
 
@@ -590,7 +591,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 # Fim
 
 ```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE}
-ipa_pt("obrigado") |> 
+ipa("obrigado") |> 
   plotSon(syl = T)
 ```
 
