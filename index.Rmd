@@ -1,6 +1,6 @@
 ---
 title: "Fonology"
-subtitle: "Um pacote R para análise fonológica"
+subtitle: "Análise Fonológica em R"
 author: "Guilherme D. Garcia"
 institute: "• Université Laval •"
 date: ""
@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 class: inverse, center, middle
 
 # Fonology
-## Um pacote R para análise fonológica
+## Análise Fonológica em R
 ### Guilherme D. Garcia
 
 <img src="ULaval2.png" alt="Université Laval" style="width:7%">
