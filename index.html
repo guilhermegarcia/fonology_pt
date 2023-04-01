@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x54dd30d65864caa98e8212115a93eb7","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"e2f42ffc4d5d4d0a9708d60ab3713845","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -120,9 +120,9 @@ install_github("guilhermegarcia/fonology")
 ---
 
 
-## Nota sobre o *pipe*
+## Nota sobre o *pipe* (`|&gt;` vs `%&gt;%`)
 
-- Desde a versão **4.1**, o R possui um pipe nativo: `|&gt;` (cf. `|&gt;` do pacote `magrittr`)
+- Desde a versão **4.1**, o R possui um pipe nativo: `|&gt;` (cf. `%&gt;%` do pacote `magrittr`)
 - Em análises com &lt;h-l&gt;altíssima quantidade&lt;/h-l&gt; de dados, prefira `|&gt;`
 --
 
@@ -251,7 +251,9 @@ ipa(word = c("Exemplo", "com", "múltiplas", "palavras"))
 
 
 ```r
-ipa(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
+ipa(word = c("Encontramos", "transcrição", 
+             "fonética", "fina", "também"), 
+    narrow = T)
 #&gt; [1] "ˌẽj̃ɲ.kõn.ˈtɾã.mʊs" "ˌtɾãns.kɾi.ˈsãw̃"   "fo.ˈnɛ.t͡ʃi.kɐ"    
 #&gt; [4] "ˈfĩ.nɐ"            "tãm.ˈbẽj̃ɲ"
 ```
@@ -722,56 +724,56 @@ lus_bigramas = lus1 |&gt;
    &lt;td style="text-align:left;"&gt; e &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 12164 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0348509 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0348513 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; a# &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11556 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0331089 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0331093 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; o# &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; o &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10818 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0309945 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0309948 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; s# &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; s &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10243 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0293470 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0293474 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; #k &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; k &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6849 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0196230 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0196232 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; #a &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6126 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0175515 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0175517 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; #d &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5361 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0153597 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0153599 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; #e &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; # &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; e &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5140 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0147265 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0147267 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

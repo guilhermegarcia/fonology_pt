@@ -104,9 +104,9 @@ install_github("guilhermegarcia/fonology")
 ---
 
 
-## Nota sobre o *pipe*
+## Nota sobre o *pipe* (`|>` vs `%>%`)
 
-- Desde a versão **4.1**, o R possui um pipe nativo: `|>` (cf. `|>` do pacote `magrittr`)
+- Desde a versão **4.1**, o R possui um pipe nativo: `|>` (cf. `%>%` do pacote `magrittr`)
 - Em análises com <h-l>altíssima quantidade</h-l> de dados, prefira `|>`
 --
 
@@ -222,7 +222,9 @@ ipa(word = c("Exemplo", "com", "múltiplas", "palavras"))
 - Transcrição fina também disponível (para o português):
 
 ```{r, echo = TRUE}
-ipa(word = c("Encontramos", "transcrição", "fonética", "fina", "também"), narrow = T)
+ipa(word = c("Encontramos", "transcrição", 
+             "fonética", "fina", "também"), 
+    narrow = T)
 ```
 
 - Função **vetorizada** (i.e., paralela): ideal para *muitos* dados
