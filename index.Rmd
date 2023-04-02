@@ -328,14 +328,25 @@ lus2 = lus1 |>
 ## Exemplo 6: texto longo em tabela 📚
 
 ```{r, echo = F}
-lus2 |> 
-  slice(1:5) |> 
-  kable(booktabs = T) |> 
-  kable_styling()
+library(DT)
+# lus2 |>
+#   slice(1:5) |>
+#   kable(booktabs = T) |>
+#   kable_styling()
+
+DT::datatable(head(lus2, 10),
+              fillContainer = FALSE,
+              options = list(pageLength = 5,
+                             lengthMenu = list(c(5))))
 ```
 
---
+---
 
+## Exemplo 6: texto longo em tabela 📚
+
+```{r, echo = TRUE}
+"praia" |> ipa() |> getSyl(pos = 1) |> syllable(const = "nucleus")
+```
 
 - Glides são onsets, codas, ou estão no núcleo...❓ 
 
