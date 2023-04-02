@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x6749096532d4198a4fbab8a8bd2f896","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xae5ace5d68243dea2cdd97f26679bf3","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -28,15 +28,6 @@
     <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
-    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
-    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="libs/datatables-binding/datatables.js"></script>
-    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
-    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
-    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
-    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
     <link rel="stylesheet" href="myStyles.css" type="text/css" />
   </head>
   <body>
@@ -234,7 +225,7 @@ ipa_pt("tipos", narrow = T)
 ipa_pt("quiséssemos", narrow = T)
 #&gt; [1] "ki.ˈzɛ.se.mʊs"
 ipa_pt("parangaricutirrimirruaro", narrow = T)
-#&gt; [1] "ˌpa.ɾãŋ.ˌga.ɾi.ˌku.t͡ʃi.ˌxi.mi.ˈxu.a.ɾʊ"
+#&gt; [1] "pa.ˌɾãŋ.ga.ˌɾi.ku.ˌt͡ʃi.xi.ˌmi.xu.ˈa.ɾʊ"
 ```
 
 - Função **não vetorizada** (i.e., serial): ideal para *um* input
@@ -398,8 +389,72 @@ lus2 = lus1 |&gt;
 
 ## Exemplo 6: texto longo em tabela 📚
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-5f8eca1d023870b14208" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-5f8eca1d023870b14208">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["armas","barões","assinalados","ocidental","praia","lusitana","mares","nunca","antes","navegados"],["ˈaɾ.mas","ba.ˈɾõj̃s","a.si.na.ˈla.dos","o.si.den.ˈtal","ˈpɾa.ja","lu.zi.ˈta.na","ˈma.ɾes","ˈnun.ka","ˈan.tes","na.ve.ˈga.dos"],["penult","final","penult","final","penult","penult","penult","penult","penult","penult"],["mas","ɾõj̃s","dos","tal","ja","na","ɾes","ka","tes","dos"],["m","ɾ","d","t",null,"n","ɾ","k","t","d"],["a","õj̃","o","a","ja","a","e","a","e","o"],["s","s","s","l",null,null,"s",null,"s","s"],["as","õj̃s","os","al","ja","a","es","a","es","os"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>word<\/th>\n      <th>ipa<\/th>\n      <th>stress<\/th>\n      <th>finSyl<\/th>\n      <th>onsetFin<\/th>\n      <th>nucFin<\/th>\n      <th>codaFin<\/th>\n      <th>rimaFin<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"lengthMenu":[5],"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; word &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; ipa &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; stress &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; finSyl &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; onsetFin &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; nucFin &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; codaFin &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; rimaFin &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; armas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈaɾ.mas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; mas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; as &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; barões &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ba.ˈɾõj̃s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; final &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ɾõj̃s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ɾ &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; õj̃ &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; õj̃s &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; assinalados &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a.si.na.ˈla.dos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; dos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; o &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; s &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; os &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ocidental &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; o.si.den.ˈtal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; final &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; tal &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; t &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; l &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; al &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; praia &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ˈpɾa.ja &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
