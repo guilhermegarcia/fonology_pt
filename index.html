@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xae5ace5d68243dea2cdd97f26679bf3","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x027375aba2c4e38be3581c936834355","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -354,9 +354,8 @@ tabela = tibble(palavra = texto |&gt; cleanText()) |&gt; # Coluna com palavras
 - `getStress()`: extração de acento a partir de transcrição
 - `getWeight()`: extração de perfil de peso (e.g., `LLH`)
 - `getSyl()`: extração de uma sílaba
+- `syllable()`: extração de constituintes silábicos
 - `stopwords_pt` e `stopwords_sp`: listas de palavras funcionais
-- &lt;mark&gt;`syllable()`&lt;/mark&gt;: extração de constituintes silábicos
-
 
 ---
 
@@ -373,11 +372,12 @@ lus2 = lus1 |&gt;
   filter(!word %in% stopwords_pt) |&gt; # Removemos palavras funcionais
   mutate(ipa = ipa(word), # Criamos uma coluna para transcrição
          stress = getStress(ipa), # outra para o acento
+         weight = getWeight(ipa), # outra para o peso
          finSyl = getSyl(word = ipa, pos = 1), # outra para a sílaba final
-*        onsetFin = syllable(finSyl, const = "onset"),
-*        nucFin = syllable(finSyl, const = "nucleus"),
-*        codaFin = syllable(finSyl, const = "coda"),
-*        rimaFin = syllable(finSyl, const = "rhyme"))
+         onsetFin = syllable(finSyl, const = "onset"),
+         nucFin = syllable(finSyl, const = "nucleus"),
+         codaFin = syllable(finSyl, const = "coda"), 
+         rimaFin = syllable(finSyl, const = "rhyme"))
 ```
 
 --
@@ -395,6 +395,7 @@ lus2 = lus1 |&gt;
    &lt;th style="text-align:left;"&gt; word &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; ipa &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; stress &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; weight &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; finSyl &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; onsetFin &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; nucFin &lt;/th&gt;
@@ -407,6 +408,7 @@ lus2 = lus1 |&gt;
    &lt;td style="text-align:left;"&gt; armas &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; ˈaɾ.mas &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; HH &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; mas &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
@@ -417,6 +419,7 @@ lus2 = lus1 |&gt;
    &lt;td style="text-align:left;"&gt; barões &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; ba.ˈɾõj̃s &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; final &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; LH &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; ɾõj̃s &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; ɾ &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; õj̃ &lt;/td&gt;
@@ -427,6 +430,7 @@ lus2 = lus1 |&gt;
    &lt;td style="text-align:left;"&gt; assinalados &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; a.si.na.ˈla.dos &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; LLH &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; dos &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; o &lt;/td&gt;
@@ -437,6 +441,7 @@ lus2 = lus1 |&gt;
    &lt;td style="text-align:left;"&gt; ocidental &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; o.si.den.ˈtal &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; final &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; LHH &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; tal &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; t &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
@@ -447,6 +452,7 @@ lus2 = lus1 |&gt;
    &lt;td style="text-align:left;"&gt; praia &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; ˈpɾa.ja &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; penult &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; LL &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; ja &lt;/td&gt;
@@ -456,15 +462,7 @@ lus2 = lus1 |&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
----
-
-## Exemplo 6: texto longo em tabela 📚
-
-
-```r
-"praia" |&gt; ipa() |&gt; getSyl(pos = 1) |&gt; syllable(const = "nucleus")
-#&gt; [1] "ja"
-```
+--
 
 - Glides são onsets, codas, ou estão no núcleo...❓ 
 
@@ -524,7 +522,7 @@ syllables |&gt;
 * plotSon(syl = F)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -538,7 +536,7 @@ syllables |&gt;
 * plotSon(syl = T)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -556,7 +554,7 @@ plotVowels(lg = "Spanish",
 *          tex = F)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -569,7 +567,7 @@ plotVowels(lg = "Italian",
 *          tex = F)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -817,7 +815,7 @@ lus_bigramas |&gt;
 * plotnGrams(type = "lollipop", n = 10)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -829,7 +827,7 @@ lus_bigramas |&gt;
 * plotnGrams(type = "heat", n = 50)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -847,7 +845,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
   theme_classic() + theme(legend.position = "none")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" height="300px" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" height="300px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -863,7 +861,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 * formants()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" height="300px" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" height="300px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -875,7 +873,7 @@ ipa("obrigado") |&gt;
   plotSon(syl = T)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" height="300px" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" height="300px" style="display: block; margin: auto;" /&gt;
 
 - O projeto se beneficiou do programa ENVOL (Université Laval). Mais informações: [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
 - Agradecimentos aos assistentes de pesquisa envolvidos no projeto (Linda Wong, Nicolas C. Bustos)

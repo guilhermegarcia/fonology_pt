@@ -293,9 +293,8 @@ tabela |>
 - `getStress()`: extração de acento a partir de transcrição
 - `getWeight()`: extração de perfil de peso (e.g., `LLH`)
 - `getSyl()`: extração de uma sílaba
+- `syllable()`: extração de constituintes silábicos
 - `stopwords_pt` e `stopwords_sp`: listas de palavras funcionais
-- <mark>`syllable()`</mark>: extração de constituintes silábicos
-
 
 ---
 
@@ -311,11 +310,12 @@ lus2 = lus1 |>
   filter(!word %in% stopwords_pt) |> # Removemos palavras funcionais
   mutate(ipa = ipa(word), # Criamos uma coluna para transcrição
          stress = getStress(ipa), # outra para o acento
+         weight = getWeight(ipa), # outra para o peso
          finSyl = getSyl(word = ipa, pos = 1), # outra para a sílaba final
-         onsetFin = syllable(finSyl, const = "onset"), #<<
-         nucFin = syllable(finSyl, const = "nucleus"), #<<
-         codaFin = syllable(finSyl, const = "coda"), #<<
-         rimaFin = syllable(finSyl, const = "rhyme")) #<<
+         onsetFin = syllable(finSyl, const = "onset"),
+         nucFin = syllable(finSyl, const = "nucleus"),
+         codaFin = syllable(finSyl, const = "coda"), 
+         rimaFin = syllable(finSyl, const = "rhyme"))
 ```
 
 --
@@ -334,13 +334,7 @@ lus2 |>
   kable_styling()
 ```
 
----
-
-## Exemplo 6: texto longo em tabela 📚
-
-```{r, echo = TRUE}
-"praia" |> ipa() |> getSyl(pos = 1) |> syllable(const = "nucleus")
-```
+--
 
 - Glides são onsets, codas, ou estão no núcleo...❓ 
 
