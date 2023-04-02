@@ -155,7 +155,7 @@ install_github("guilhermegarcia/fonology")
 
 <br>
 - <h-l>Dados escritos</h-l>: fáceis de encontrar, difíceis de analisar (e.g., grafemas ≠ fonemas; silabificação, acento)
-- Transcrição fonêmica: ponto de partida **essencial** 
+- Transcrição fonêmica: ponto de partida **essencial**
 
 
 ---
