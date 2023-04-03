@@ -589,6 +589,30 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
+## Exemplo 14: de IPA a TIPA
+
+- Para quem usa $\LaTeX$, transcrição com `tipa` é algo essencial
+- A função `ipa2tipa()` traduz outputs em IPA para `tipa`:
+
+--
+
+```{r}
+"Aqui está uma frase que desejo transcrever fonemicamente" |> 
+  cleanText() |> 
+  ipa(narrow = T) |> 
+  ipa2tipa(pre = "[ ", post = " ]")
+```
+
+--
+
+<br>
+
+<div align="center">
+<img src="tipa.png" alt="Ouput tipa" style="width:100%">
+</div>
+---
+
+
 # Fim
 
 ```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE}

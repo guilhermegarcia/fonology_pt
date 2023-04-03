@@ -20,7 +20,7 @@
     <script src="libs/xaringanExtra-search/search.js"></script>
     <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x75e42b264dd471dbbd94dd0454833fd","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xb302943bb704877991a3e4eec31726e","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -865,6 +865,33 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
+## Exemplo 14: de IPA a TIPA
+
+- Para quem usa `\(\LaTeX\)`, transcrição com `tipa` é algo essencial
+- A função `ipa2tipa()` traduz outputs em IPA para `tipa`:
+
+--
+
+
+```r
+"Aqui está uma frase que desejo transcrever fonemicamente" |&gt; 
+  cleanText() |&gt; 
+  ipa(narrow = T) |&gt; 
+  ipa2tipa(pre = "[ ", post = " ]")
+#&gt; Done! Here's your tex code using TIPA:
+#&gt; \textipa{ [ a."ki es."ta "u.m5 "fRa.zI "ke de."ze.ZU {""}tR\~{a}ns.kRe."veR {""}fo.ne.{""}mi.ka."m\~{e}\~{j}{\textltailn}.\t{tS}{\r*{I}} ] }
+```
+
+--
+
+&lt;br&gt;
+
+&lt;div align="center"&gt;
+&lt;img src="tipa.png" alt="Ouput tipa" style="width:100%"&gt;
+&lt;/div&gt;
+---
+
+
 # Fim
 
 
@@ -873,7 +900,7 @@ ipa("obrigado") |&gt;
   plotSon(syl = T)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" height="300px" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" height="300px" style="display: block; margin: auto;" /&gt;
 
 - O projeto se beneficiou do programa ENVOL (Université Laval). Mais informações: [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
 - Agradecimentos aos assistentes de pesquisa envolvidos no projeto (Linda Wong, Nicolas C. Bustos)
