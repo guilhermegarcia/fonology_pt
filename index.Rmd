@@ -302,17 +302,17 @@ tabela |>
 ## Exemplo 6: texto longo em tabela 📚
 
 ```{r, echo = T}
-lus1 = read_lines("lusiadas.txt") # Importamos o texto integral
+lus1 = read_lines("lusiadas.txt")                         # Importamos o texto integral
 
 lus2 = lus1 |> 
-  cleanText() |> # Limpamos e tokenizamos o texto 
+  cleanText() |>                                          # Limpamos e tokenizamos o texto 
   as_tibble() |> 
   rename(word = value) |> 
-  filter(!word %in% stopwords_pt) |> # Removemos palavras funcionais
-  mutate(ipa = ipa(word), # Criamos uma coluna para transcrição
-         stress = getStress(ipa), # outra para o acento
-         weight = getWeight(ipa), # outra para o peso
-         finSyl = getSyl(word = ipa, pos = 1), # outra para a sílaba final
+  filter(!word %in% stopwords_pt) |>                      # Removemos palavras funcionais
+  mutate(ipa = ipa(word),                                 # Criamos uma coluna para transcrição
+         stress = getStress(ipa),                         # outra para o acento
+         weight = getWeight(ipa),                         # outra para o peso
+         finSyl = getSyl(word = ipa, pos = 1),            # outra para a sílaba final
          onsetFin = syllable(finSyl, const = "onset"),
          nucFin = syllable(finSyl, const = "nucleus"),
          codaFin = syllable(finSyl, const = "coda"), 
