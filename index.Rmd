@@ -144,8 +144,9 @@ install_github("guilhermegarcia/fonology")
 --
 
 7. Formantes + `ggplot2`
-
 --
+
+8. De IPA para TIPA
 
 ***
 
