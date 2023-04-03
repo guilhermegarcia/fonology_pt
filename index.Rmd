@@ -302,7 +302,7 @@ tabela |>
 ## Exemplo 6: texto longo em tabela 📚
 
 ```{r, echo = T}
-lus1 = read_lines("lusiadas.txt")                         # Importamos o texto integral
+lus1 = read_lines("lusiadas.txt")                         
 
 lus2 = lus1 |> 
   cleanText() |>                                          # Limpamos e tokenizamos o texto 
