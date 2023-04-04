@@ -165,11 +165,6 @@ class: inverse, center, middle
 
 # Principais funções
 
-
-<img src="cat.gif" alt="pipe" style="width:30%;">
-
-
-
 ---
 
 ## Exemplo 1: transcrição ampla
