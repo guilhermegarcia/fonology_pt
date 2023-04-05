@@ -11,7 +11,7 @@ output:
     includes:
       after_body: "myStyles.css"
     nature:
-      highlight: haddock
+      highlightStyle: github
       ratio: '16:9'
       center: true
       slideNumberFormat: "%current% de %total%"
@@ -21,6 +21,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+library(fontawesome)
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -32,7 +33,10 @@ class: inverse, center, middle
 
 # Fonology
 ## Análise Fonológica em R
-### Guilherme D. Garcia
+### Guilherme D. Garcia 
+
+<a href = "https://gdgarcia.ca" style="color: #FEC20B">`r fa("globe-americas")`</a>
+
 
 <img src="ULaval2.png" alt="Université Laval" style="width:7%">
 
@@ -609,12 +613,11 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 ---
 
 
-# Fim
+# Dúvidas? 
 
 ```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE}
 ipa("obrigado") |> 
   plotSon(syl = T)
 ```
 
-- O projeto se beneficiou do programa ENVOL (Université Laval). Mais informações: [gdgarcia.ca/fonology](https://gdgarcia.ca/fonology)
-- Agradecimentos aos assistentes de pesquisa envolvidos no projeto (Linda Wong, Nicolas C. Bustos)
+- O projeto se beneficiou do programa ENVOL (Université Laval)
