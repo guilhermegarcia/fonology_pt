@@ -23,6 +23,7 @@ output:
 ```{r setup, include=FALSE}
 library(fontawesome)
 options(htmltools.dir.version = FALSE)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -175,7 +176,7 @@ class: inverse, center, middle
 
 - `ipa_pt(...)`: transcrição de palavras
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache=TRUE}
 library(Fonology)
 
 ipa_pt("concentração")
@@ -195,7 +196,7 @@ ipa_pt("parangaricutirrimirruaro")
 
 - `ipa_pt(..., narrow = T)`
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache=TRUE}
 ipa_pt("concentração", narrow = T)
 ipa_pt("tipos", narrow = T)
 ipa_pt("quiséssemos", narrow = T)
@@ -213,7 +214,7 @@ ipa_pt("parangaricutirrimirruaro", narrow = T)
 - `ipa(...)`: transcrição vetorizada (<h-l>português e espanhol</h-l>)
 
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache=TRUE}
 ipa(word = c("Exemplo", "com", "múltiplas", "palavras"))
 ```
 
@@ -221,7 +222,7 @@ ipa(word = c("Exemplo", "com", "múltiplas", "palavras"))
 
 - Transcrição fina também disponível (para o português):
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache=TRUE}
 ipa(word = c("Encontramos", "transcrição", 
              "fonética", "fina", "também"), 
     narrow = T)
@@ -239,7 +240,7 @@ ipa(word = c("Encontramos", "transcrição",
 - E se nosso input for um texto...?
 - <mark>`cleanText()`</mark>: limpeza e tokenização
 
-```{r, echo = TRUE, message = F, tidy=FALSE}
+```{r, echo = TRUE, message = F, tidy=FALSE, cache=TRUE}
 library(tidyverse)
 texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
@@ -255,7 +256,7 @@ texto |>
 
 - Normalmente, análises começam com *data frames* ou *tibbles*
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, cache=TRUE}
 texto = "Este é um teXto 123# bastante cUrto que Não está tokenizado"
 
 tabela = tibble(palavra = texto |> cleanText()) |> # Coluna com palavras
@@ -265,7 +266,7 @@ tabela = tibble(palavra = texto |> cleanText()) |> # Coluna com palavras
 
 --
 
-```{r, echo = F, message = F}
+```{r, echo = F, message = F, cache=TRUE}
 library(kableExtra)
 tabela |> 
   slice(1:6) |> 
@@ -300,7 +301,7 @@ tabela |>
 
 ## Exemplo 6: texto longo em tabela 📚
 
-```{r, echo = T}
+```{r, echo = T, cache=TRUE}
 lus1 = read_lines("lusiadas.txt")                         
 
 lus2 = lus1 |> 
@@ -321,13 +322,13 @@ lus2 = lus1 |>
 --
 
 - Total de `r nrow(lus2)` palavras lexicais 
-- ⏱️ total para executar o código abaixo: **< 2s**
+- ⏳ **< 2s**
 
 ---
 
 ## Exemplo 6: texto longo em tabela 📚
 
-```{r, echo = F}
+```{r, echo = F, cache=TRUE}
 lus2 |>
   slice(1:5) |>
   kable(booktabs = T) |>
@@ -355,7 +356,7 @@ lus2 |>
 
 - `demi(word = ..., d = ...)`: extração de demissílabas (`d` = `1` ou `2`)
 
-```{r}
+```{r, cache=TRUE}
 syllables = c("kom", "sil", "fran", "klas")
 
 demis = syllables |> 
@@ -370,7 +371,7 @@ demis
 
 - Também podemos calcular a média de dispersão de sonoridade em um vetor com `meanSonDisp()`:
 
-```{r}
+```{r, cache=TRUE}
 syllables |> 
   demi(d = 1) |> 
   meanSonDisp()
@@ -388,7 +389,7 @@ syllables |>
 
 .pull-left[
 
-```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800, cache=TRUE}
 "combradol" |> 
   ipa() |> 
   plotSon(syl = F) #<<
@@ -399,7 +400,7 @@ syllables |>
 
 .pull-right[
 
-```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800, cache=TRUE}
 "sobremesa" |> 
   ipa(lg = "Spanish") |> 
   plotSon(syl = T) #<<
@@ -415,7 +416,7 @@ syllables |>
 
 .pull-left[
 
-```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800, cache=TRUE}
 plotVowels(lg = "Spanish", 
            tex = F) #<<
 ```
@@ -425,7 +426,7 @@ plotVowels(lg = "Spanish",
 
 .pull-right[
 
-```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=6.5, fig.height=4, fig.retina=TRUE, dpi=800, cache=TRUE}
 plotVowels(lg = "Italian", 
            tex = F) #<<
 ```
@@ -438,7 +439,7 @@ plotVowels(lg = "Italian",
 
 - De fonemas a traços usando `getFeat()`:
 
-```{r}
+```{r, cache=TRUE}
 getFeat(ph = c("i", "u"), lg = "English")
 getFeat(ph = c("p", "b"), lg = "French")
 getFeat(ph = c("i", "y", "u"), lg = "French")
@@ -448,7 +449,7 @@ getFeat(ph = c("i", "y", "u"), lg = "French")
 
 - De traços a fonemas usando `getPhon()`:
 
-```{r}
+```{r, cache=TRUE}
 getPhon(ft = c("+syl", "+hi"), lg = "French")
 getPhon(ft = c("-DR", "-cont", "-son"), lg = "English")
 getPhon(ft = c("-son", "+vce"), lg = "Spanish")
@@ -460,7 +461,7 @@ getPhon(ft = c("-son", "+vce"), lg = "Spanish")
 
 - `wug_pt()` cria palavras
 
-```{r}
+```{r, cache=TRUE}
 set.seed(1)
 wug_pt(profile = "LHL")
 ```
@@ -469,7 +470,7 @@ wug_pt(profile = "LHL")
 
 - Vamos criar uma tabela com 8 palavras novas + probabilidade fonotática com <mark>`biGram_pt()`</mark>:
 
-```{r, message = F}
+```{r, message = F, cache=TRUE}
 set.seed(1)
 gerador = tibble(palavra = wug_pt("LHL", n = 8)) |> # Criamos 8 palavras
   mutate(bigrama = palavra |> # adicionamos uma coluna para log(P(bigrama))
@@ -484,7 +485,7 @@ gerador = tibble(palavra = wug_pt("LHL", n = 8)) |> # Criamos 8 palavras
 .pull-left[
 - Bigramas menores $\rightarrow$ menos prováveis
 
-```{r, echo = F}
+```{r, echo = F, cache=TRUE}
 gerador |> 
   arrange(desc(bigrama)) |> 
   kable(booktabs = T) |> 
@@ -499,7 +500,7 @@ gerador |>
 - Acesse o léxico simplificado com `pt_lex`
 - Ou o léxico completo com `psl`
 
-```{r}
+```{r, cache=TRUE}
 set.seed(1)
 pt_lex |> sample_n(5)
 ```
@@ -510,14 +511,14 @@ pt_lex |> sample_n(5)
 ## Exemplo 12: Listando bigramas 🎲
 
 .pull-left[
-```{r, echo = T}
+```{r, echo = T, cache=TRUE}
 lus_bigramas = lus1 |> 
   cleanText() |> 
   ipa() |> 
   nGramTbl(n = 2) #<<
 ```
 
-```{r, echo = F}
+```{r, echo = F, cache=TRUE}
 lus_bigramas |> 
   slice(1:8) |> 
   kable(booktabs = T) |> 
@@ -550,7 +551,7 @@ lus_bigramas |>
 ## Exemplo 12: Vizualisando bigramas 🎲
 
 .pull-left[
-```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800, cache=TRUE}
 lus_bigramas |> 
   plotnGrams(type = "lollipop", n = 10) #<<
 ```
@@ -559,7 +560,7 @@ lus_bigramas |>
 --
 
 .pull-right[
-```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800}
+```{r, fig.align='center', fig.width=4.25, fig.height=3, fig.retina=TRUE, dpi=800, cache=TRUE}
 lus_bigramas |> 
   plotnGrams(type = "heat", n = 50) #<<
 ```
@@ -573,7 +574,7 @@ lus_bigramas |>
 
 - Um *wrapper* simples para F1/F2 em `ggplot2`. Exemplo com `vowels` (dados hipotéticos): 
 
-```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px"}
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", cache=TRUE}
 ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
   geom_text() +
   theme_classic() + theme(legend.position = "none")
@@ -585,7 +586,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 - Um *wrapper* simples para F1/F2 em `ggplot2`. Exemplo com `vowels` (dados hipotéticos):
 
-```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px"}
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", cache=TRUE}
 ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
   geom_text() +
   theme_classic() + theme(legend.position = "none") +
@@ -594,14 +595,14 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 ---
 
-## Exemplo 14: de IPA a TIPA
+## Exemplo 14: de IPA a TIPA ✏️
 
 - Para quem usa $\LaTeX$, transcrição com `tipa` é algo essencial
 - A função `ipa2tipa()` traduz outputs em IPA para `tipa`:
 
 --
 
-```{r}
+```{r, cache=TRUE}
 "Aqui está uma frase que desejo transcrever fonemicamente" |> 
   cleanText() |> 
   ipa(narrow = T) |> 
@@ -618,11 +619,11 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 ---
 
 
-# Dúvidas? 
+# Dúvidas? 🫨
 
-```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE}
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE, cache=TRUE}
 ipa("obrigado") |> 
   plotSon(syl = T)
 ```
 
-- O projeto se beneficiou do programa ENVOL (Université Laval)
+- O projeto se beneficiou do programa ENVOL da Université Laval (2022—2023)
