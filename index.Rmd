@@ -126,7 +126,7 @@ install_github("guilhermegarcia/fonology")
 
 ---
 
-## Itinerário
+## Itinerário 🗺️
 
 ### Demo das principais funções:
 
