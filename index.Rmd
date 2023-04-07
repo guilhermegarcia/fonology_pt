@@ -332,6 +332,11 @@ lus2 |>
   slice(1:5) |>
   kable(booktabs = T) |>
   kable_styling()
+
+# library(gt)
+# lus2 |> slice(1:50) |> 
+  # gt() |> 
+  # opt_interactive(use_search = TRUE, use_compact_mode = TRUE, page_size_default = 3)
 ```
 
 --
