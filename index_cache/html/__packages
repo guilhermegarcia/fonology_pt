@@ -11,3 +11,5 @@ stringr
 forcats
 lubridate
 kableExtra
+networkD3
+knitr

@@ -548,7 +548,7 @@ lus_bigramas |>
 
 ---
 
-## Exemplo 12: Vizualisando bigramas 🎲
+## Exemplo 12: Visualizando bigramas 🎲
 
 .pull-left[
 ```{r, fig.align='center', fig.width=4, fig.height=3, fig.retina=TRUE, dpi=800, cache=TRUE}
@@ -568,6 +568,23 @@ lus_bigramas |>
 
 ---
 
+## Exemplo 12: Visualizando bigramas 🎲
+
+- Rede com os top 50 bigramas de *Os Lusiádas* com `networkD3` (excluindo `#`)
+
+<br>
+
+```{r, cache=TRUE, echo=FALSE, results='asis'}
+# library(knitr)
+# Embed D3 figure into Rmarkdown slides using iframe
+htmltools::tags$div(
+  htmltools::tags$iframe(src = "my_network.html", height = 450, width = "70%", class = "d3-figure"),
+  class = "iframe-container"
+)
+
+```
+
+---
 
 
 ## Exemplo 13: gráfico de vogais 🗣️

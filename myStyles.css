@@ -22,3 +22,13 @@ pre, code {
   color: #FEC20B;
   font-weight: bold;
 }
+
+/* Center the contents of the iframe */
+div.iframe-container {
+  text-align: center;
+}
+
+/* Remove the iframe border */
+iframe.d3-figure {
+  border: none;
+}
