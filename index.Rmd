@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 class: inverse, center, middle
 
 # Fonology
-## Análise Fonológica em R
+## Análise Fonológica em R 
 ### Guilherme D. Garcia 
 
 <a href = "https://gdgarcia.ca" style="color: #FEC20B">`r fa("globe-americas")`</a>
@@ -42,7 +42,7 @@ class: inverse, center, middle
 <img src="ULaval2.png" alt="Université Laval" style="width:7%">
 
 
-#### Université Laval • Centre for Research on Brain, Language & Music
+#### Université Laval • Centre for Research on Brain, Language & Music (CRBLM)
 
 ---
 
