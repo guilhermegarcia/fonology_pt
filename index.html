@@ -16,11 +16,13 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Clique para copiar","success":"Copiado!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xf4bdc3ab2354b3286ccfb09eb1afcfb","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x1094e52155844a288ba9ba089d4c14d","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
     <script src="libs/editable/editable.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
     <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
@@ -356,6 +358,8 @@ tabela = tibble(palavra = texto |&gt; cleanText()) |&gt; # Coluna com palavras
 
 ## Exemplo 6: texto longo em tabela 📚
 
+.panelset[
+.panel[.panel-name[Código]
 
 ```r
 lus1 = read_lines("lusiadas.txt")                         
@@ -375,14 +379,14 @@ lus2 = lus1 |&gt;
          rimaFin = syllable(finSyl, const = "rhyme"))
 ```
 
---
+]
 
-- Total de 32618 palavras lexicais 
-- ⏳ **&lt; 2s**
+.panel[.panel-name[Resultado]
 
----
+- Total de 32618 palavras lexicais (⏳ **&lt; 2s**)
+- Tabela em format *tidy data* pronto para a análise
 
-## Exemplo 6: texto longo em tabela 📚
+&lt;br&gt;
 
 &lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -456,16 +460,22 @@ lus2 = lus1 |&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+]
 
---
+.panel[.panel-name[Glides?]
+
 
 - Glides são onsets, codas, ou estão no núcleo...❓ 
+- A função `syllable()` nos permite ajustar premissas representacionais:
 
---
+&lt;br&gt;
 
 &lt;div align = "center"&gt;
 &lt;img src="syllable.png" alt="syllable" style="width:80%;"&gt;
 &lt;/div&gt;
+
+]
+]
 
 ---
 
@@ -1049,6 +1059,8 @@ div.iframe-container {
 iframe.d3-figure {
   border: none;
 }
+
+
 
 <script>
 slideshow._releaseMath = function(el) {
