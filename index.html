@@ -16,7 +16,7 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Clique para copiar","success":"Copiado!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x1094e52155844a288ba9ba089d4c14d","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"b7749185ee994898af028a5d91dbc05e","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -481,22 +481,18 @@ lus2 = lus1 |&gt;
 
 ## Exemplo 7: sonoridade 🔉
 
-- `demi(word = ..., d = ...)`: extração de demissílabas (`d` = `1` ou `2`)
+- `demi(word = ..., d = ...)`: extração de demissílabas (`d = 1` ou `d = 2`)
 
 
 ```r
 syllables = c("kom", "sil", "fran", "klas")
 
-demis = syllables |&gt; 
+syllables |&gt; 
   demi(d = 1) # extrair primeira demissílaba de cada sílaba
-
-demis
 #&gt; [1] "ko"  "si"  "fra" "kla"
 ```
 
----
-
-## Exemplo 7: sonoridade 🔉
+--
 
 - Também podemos calcular a média de dispersão de sonoridade em um vetor com `meanSonDisp()`:
 

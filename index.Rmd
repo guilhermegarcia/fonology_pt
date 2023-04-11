@@ -359,20 +359,16 @@ lus2 |>
 
 ## Exemplo 7: sonoridade 🔉
 
-- `demi(word = ..., d = ...)`: extração de demissílabas (`d` = `1` ou `2`)
+- `demi(word = ..., d = ...)`: extração de demissílabas (`d = 1` ou `d = 2`)
 
 ```{r, cache=TRUE}
 syllables = c("kom", "sil", "fran", "klas")
 
-demis = syllables |> 
+syllables |> 
   demi(d = 1) # extrair primeira demissílaba de cada sílaba
-
-demis
 ```
 
----
-
-## Exemplo 7: sonoridade 🔉
+--
 
 - Também podemos calcular a média de dispersão de sonoridade em um vetor com `meanSonDisp()`:
 
