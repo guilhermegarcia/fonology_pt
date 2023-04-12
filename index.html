@@ -16,7 +16,7 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Clique para copiar","success":"Copiado!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"d7495af3cae74f27906e32a3f59ce358","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"a031d00875a24640a5c60ad591e57275","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -886,12 +886,12 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 
 
 ```r
-"Aqui está uma frase que desejo transcrever fonemicamente" |&gt; 
+"Aqui estão algumas palavras que desejo transcrever" |&gt; 
   cleanText() |&gt; 
   ipa(narrow = T) |&gt; 
   ipa2tipa(pre = "[ ", post = " ]")
 #&gt; Done! Here's your tex code using TIPA:
-#&gt; \textipa{ [ a."ki es."ta "u.m5 "fRa.zI "ke de."ze.ZU {""}tR\~{a}ns.kRe."veR {""}fo.ne.{""}mi.ka."m\~{e}\~{j}{\textltailn}.\t{tS}{\r*{I}} ] }
+#&gt; \textipa{ [ a."ki es."t\~{a}\~{w} aw."g\~{u}.m5s pa."la.vR5s "ke de."ze.ZU {""}tR\~{a}ns.kRe."veR ] }
 ```
 
 --

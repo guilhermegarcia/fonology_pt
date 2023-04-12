@@ -621,7 +621,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 --
 
 ```{r, cache=TRUE}
-"Aqui está uma frase que desejo transcrever fonemicamente" |> 
+"Aqui estão algumas palavras que desejo transcrever" |> 
   cleanText() |> 
   ipa(narrow = T) |> 
   ipa2tipa(pre = "[ ", post = " ]")
