@@ -33,4 +33,7 @@ iframe.d3-figure {
   border: none;
 }
 
-
+/* Hide slide number on title slide */
+.title-slide .remark-slide-number {
+  display: none;
+}

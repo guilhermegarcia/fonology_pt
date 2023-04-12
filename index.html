@@ -16,7 +16,7 @@
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Clique para copiar","success":"Copiado!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"a031d00875a24640a5c60ad591e57275","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"f795e2be13314837b11a5082c7b66368","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -34,7 +34,7 @@
 
 
 
-class: inverse, center, middle
+class: title-slide, inverse, center, middle
 
 # Fonology
 ## Análise Fonológica em R 
@@ -71,7 +71,6 @@ class: inverse, center, middle
   100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
 }</style>
 
-
 ## O que é 🤔
 
 &lt;img src="fonology.png" alt="Fonology" style="width:15%; float: right"&gt;
@@ -94,6 +93,7 @@ class: inverse, center, middle
 - Componente **didático**: interatividade e acessibilidade 
 
 ---
+
 
 ## Instalação etc. 🧐
 
@@ -1056,6 +1056,22 @@ iframe.d3-figure {
   border: none;
 }
 
+/* Hide slide number on title slide */
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+.remark-slide-content {
+  transition: transform 1s;
+}
+
+.remark-slide-content.in {
+  transform: scale(0.9);
+}
+
+.remark-slide-content.out {
+  transform: scale(1.1);
+}
 
 
 <script>

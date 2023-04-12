@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-class: inverse, center, middle
+class: title-slide, inverse, center, middle
 
 # Fonology
 ## Análise Fonológica em R 
@@ -62,7 +62,6 @@ xaringanExtra::use_extra_styles(
 
 ```
 
-
 ## O que é 🤔
 
 <img src="fonology.png" alt="Fonology" style="width:15%; float: right">
@@ -85,6 +84,7 @@ xaringanExtra::use_extra_styles(
 - Componente **didático**: interatividade e acessibilidade 
 
 ---
+
 
 ## Instalação etc. 🧐
 
