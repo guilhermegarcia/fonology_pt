@@ -637,7 +637,7 @@ ggplot(data = vowels, aes(x = F2, y = F1, color = vowel, label = vowel)) +
 ---
 
 
-# Dúvidas? 🫨
+# Dúvidas? 😶‍🌫️
 
 ```{r, fig.align='center', fig.width=5, fig.height=3, fig.retina=TRUE, dpi = 800, out.height="300px", echo = TRUE, cache=TRUE}
 ipa("obrigado") |> 
