@@ -44,7 +44,7 @@ class: title-slide, inverse, center, middle
 
 #### Université Laval • Centre for Research on Brain, Language & Music (CRBLM)
 
-<p class="my-font">@ MorPhon Circle, UFRGS, Porto Alegre, 14 de abril de 2023</p>
+<p style = "color: #FEC20B; font-family: Fira Code;">@ MorPhon Circle, UFRGS, Porto Alegre, 14 de abril de 2023</p>
 
 ---
 

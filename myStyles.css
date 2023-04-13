@@ -32,9 +32,3 @@ iframe.d3-figure {
 .title-slide .remark-slide-number {
   display: none;
 }
-
-
-.my-font{
-  font-family: 'Fira Code', 'Menlo', 'Courier New', monospace;
-  color: #FEC20B;
-}
