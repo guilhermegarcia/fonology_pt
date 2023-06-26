@@ -44,8 +44,6 @@ class: title-slide, inverse, center, middle
 
 #### Université Laval • Centre for Research on Brain, Language & Music (CRBLM)
 
-<p style = "color: #FEC20B; font-family: Fira Code, Menlo, monospace;">Atualizado em: 14 de abril de 2023</p>
-
 ---
 
 ```{r xaringanExtra, echo=FALSE}
