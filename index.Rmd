@@ -571,7 +571,7 @@ lus_bigramas |>
 
 ## Exemplo 12: Visualizando bigramas 🎲
 
-- Rede com os top 50 bigramas de *Os Lusiádas* com `networkD3` (excluindo `#`)
+- Rede com os top 50 bigramas de *Os Lusíadas* com `networkD3` (excluindo `#`)
 
 <br>
 
