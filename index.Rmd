@@ -42,7 +42,7 @@ class: title-slide, inverse, center, middle
 <img src="ULaval2.png" alt="Université Laval" style="width:7%">
 
 
-#### Université Laval • Centre for Research on Brain, Language & Music (CRBLM)
+#### Université Laval • CRBLM • CRIHN
 
 ---
 
